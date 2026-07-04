@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="card auth-card auth-card--compact">
+    <div class="auth-header">
+      <h1>Sign in to LogiShield</h1>
+      <p>Automate discrepancy detection for your AP and warehouse teams.</p>
+    </div>
+    <form method="post" class="auth-form">
+      <label>Email</label>
+      <input type="email" name="email" required />
+      <label>Password</label>
+      <input type="password" name="password" required />
+      <button type="submit">Log in</button>
+    </form>
+    <p class="helper-text">Demo account: demo@logishield.com / demo1234</p>
+  </section>
+{% endblock %}

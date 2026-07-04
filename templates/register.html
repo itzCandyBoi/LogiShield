@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="card auth-card auth-card--compact">
+    <div class="auth-header">
+      <h1>Create your workspace</h1>
+      <p>Start protecting margin with smart invoice and receipt reconciliation.</p>
+    </div>
+    <form method="post" class="auth-form">
+      <label>Full name</label>
+      <input type="text" name="name" required />
+      <label>Email</label>
+      <input type="email" name="email" required />
+      <label>Password</label>
+      <input type="password" name="password" required />
+      <button type="submit">Register</button>
+    </form>
+  </section>
+{% endblock %}

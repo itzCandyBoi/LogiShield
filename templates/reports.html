@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="card">
+    <div class="section-heading">
+      <h1>Reports</h1>
+      <p>Audit trail for every discrepancy caught by the engine.</p>
+    </div>
+    <div class="section-heading">
+      <a href="{{ url_for('export_reports') }}">Export CSV</a>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Case</th>
+          <th>Created at</th>
+          <th>Discrepancies</th>
+          <th>Potential loss</th>
+          <th>Status</th>
+          <th>Alert</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for case in cases %}
+          <tr>
+            <td>{{ case.title }}</td>
+            <td>{{ case.created_at }}</td>
+            <td>{{ case.total_discrepancies }}</td>
+            <td>${{ case.potential_loss }}</td>
+            <td>{{ case.status }}</td>
+            <td>{{ case.notification_status or 'none' }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Line-level discrepancies</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Case</th>
+          <th>Item</th>
+          <th>Invoice qty</th>
+          <th>Receipt qty</th>
+          <th>Severity</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for line in discrepancies %}
+          <tr>
+            <td>{{ line.title }}</td>
+            <td>{{ line.item_name }}</td>
+            <td>{{ line.invoice_qty }}</td>
+            <td>{{ line.receipt_qty }}</td>
+            <td>{{ line.severity }}</td>
+            <td>{{ line.status }}</td>
+            <td>
+              <form method="post" action="{{ url_for('review_discrepancy', discrepancy_id=line.id) }}">
+                <select name="status">
+                  <option value="open" {% if line.status == 'open' %}selected{% endif %}>Open</option>
+                  <option value="reviewed" {% if line.status == 'reviewed' %}selected{% endif %}>Reviewed</option>
+                  <option value="approved" {% if line.status == 'approved' %}selected{% endif %}>Approved</option>
+                </select>
+                <button type="submit">Save</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

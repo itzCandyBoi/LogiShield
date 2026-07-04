@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="card">
+    <div class="section-heading">
+      <h1>Core business: reconciliation engine</h1>
+      <p>Upload a supplier invoice and a warehouse receipt to detect mismatches automatically.</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="upload-form">
+      <label>Supplier invoice file</label>
+      <input type="file" name="invoice_file" accept=".csv,.pdf" required />
+      <label>Warehouse receipt file</label>
+      <input type="file" name="receipt_file" accept=".csv,.pdf" required />
+      <button type="submit">Run reconciliation</button>
+    </form>
+  </section>
+
+  {% if details %}
+    <section class="card">
+      <div class="section-heading">
+        <h2>Reconciliation summary</h2>
+        <span class="badge">{{ details.summary.total_discrepancies }} discrepancies</span>
+      </div>
+      <div class="stats-grid compact">
+        <div class="stat-card">
+          <h3>{{ details.summary.total_items }}</h3>
+          <p>Items reviewed</p>
+        </div>
+        <div class="stat-card">
+          <h3>${{ details.summary.potential_loss }}</h3>
+          <p>Potential loss</p>
+        </div>
+        <div class="stat-card">
+          <h3>{{ details.summary.risk_level }}</h3>
+          <p>Risk level</p>
+        </div>
+      </div>
+      <p class="hint-text">{{ 'Immediate action recommended for high-risk discrepancies.' if details.summary.risk_level == 'High' else 'Review the flagged items and approve or comment on any adjustments.' }}</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Invoice qty</th>
+            <th>Receipt qty</th>
+            <th>Delta</th>
+            <th>Severity</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in details.discrepancies %}
+            <tr>
+              <td>{{ item.item_name }}</td>
+              <td>{{ item.invoice_qty }}</td>
+              <td>{{ item.receipt_qty }}</td>
+              <td>{{ item.delta }}</td>
+              <td>{{ item.severity }}</td>
+              <td>{{ item.reason }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  {% endif %}
+
+  {% if latest_case %}
+    <section class="card">
+      <h2>Latest saved case</h2>
+      <p><strong>{{ latest_case.title }}</strong></p>
+      <p>{{ latest_case.invoice_name }} vs {{ latest_case.receipt_name }}</p>
+      <p>Status: {{ latest_case.status }}</p>
+    </section>
+  {% endif %}
+{% endblock %}

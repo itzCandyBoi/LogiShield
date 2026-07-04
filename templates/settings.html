@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="card">
+    <h1>Settings</h1>
+    <p>Configure how aggressively the platform should alert your finance team.</p>
+    <form method="post" class="upload-form">
+      <label>Alert threshold</label>
+      <input type="number" name="alert_threshold" min="1" max="20" value="{{ user.alert_threshold }}" />
+      <label>Notification preference</label>
+      <select name="notification_preference">
+        <option value="email" {% if user.notification_preference == 'email' %}selected{% endif %}>Email</option>
+        <option value="slack" {% if user.notification_preference == 'slack' %}selected{% endif %}>Slack</option>
+      </select>
+      <button type="submit">Save preferences</button>
+    </form>
+    <div class="hint-block">
+      <p><strong>Email notifications:</strong> set SMTP_SERVER, SMTP_PORT, SMTP_USERNAME, SMTP_PASSWORD, and EMAIL_SENDER in environment variables.</p>
+      <p><strong>Slack notifications:</strong> set SLACK_WEBHOOK_URL in environment variables.</p>
+      <p>Status: <strong>{{ 'Slack ready' if slack_enabled else 'Slack not configured' }}</strong>, <strong>{{ 'Email ready' if email_enabled else 'Email not configured' }}</strong></p>
+    </div>
+  </section>
+{% endblock %}

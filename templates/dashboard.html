@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="hero card">
+    <div>
+      <p class="eyebrow">B2B SaaS MVP</p>
+      <h1>LogiShield turns invoice and warehouse mismatches into revenue protection.</h1>
+      <p>SMEs lose money to slow reconciliation, missing documents, and manual overbilling errors. This prototype catches them in minutes.</p>
+    </div>
+    <div class="hero-badge">Live demo • AP + Ops</div>
+  </section>
+
+  <section class="stats-grid">
+    <div class="card stat-card">
+      <h3>{{ stats.total_cases }}</h3>
+      <p>Cases reviewed</p>
+    </div>
+    <div class="card stat-card">
+      <h3>{{ stats.total_discrepancies }}</h3>
+      <p>Discrepancies flagged</p>
+    </div>
+    <div class="card stat-card">
+      <h3>${{ stats.potential_loss }}</h3>
+      <p>Potential loss protected</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-heading">
+      <h2>Risk breakdown</h2>
+      <span class="badge">Severity by line item</span>
+    </div>
+    <div class="risk-row">
+      <div class="risk-pill high">High risk: {{ stats.high_risk }}</div>
+      <div class="risk-pill medium">Medium risk: {{ stats.medium_risk }}</div>
+      <div class="risk-pill low">Low risk: {{ stats.low_risk }}</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-heading">
+      <h2>Recent reconciliation activity</h2>
+      <a href="{{ url_for('core_business') }}">Run new check</a>
+    </div>
+    <ul class="list">
+      {% for case in cases %}
+        <li>
+          <strong>{{ case.title }}</strong>
+          <span>{{ case.created_at }} • {{ case.total_discrepancies }} discrepancies</span>
+        </li>
+      {% else %}
+        <li>No cases yet. Upload your first invoice and receipt bundle.</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock %}

@@ -1,6 +1,6 @@
 # LogiShield
 
-LogiShield is a hackathon MVP for automated discrepancy and fraud detection in logistics and finance workflows.
+This repository is the submitted prototype for judges and reviewers. It contains the live demo details, judge instructions, and sample data to run the prototype.
 
 ## What it does
 - User registration and login
@@ -9,7 +9,10 @@ LogiShield is a hackathon MVP for automated discrepancy and fraud detection in l
 - Reports and audit trail
 - Settings for alert thresholds and notification preferences
 
-## Run locally
+## For judges: run this prototype
+If a live demo URL is available, open it first. If you want to run the prototype locally, use the commands below.
+
+### Run locally
 1. Install Python 3.13+
 2. Install dependencies:
    `pip install -r requirements.txt`
@@ -37,7 +40,7 @@ Notes:
 - If you prefer IaC, a `render.yaml` and `Procfile` are included in the repo to speed up setup.
 
 ## If judges run locally (fallback)
-Include these commands in the `README` or submission so judges can run the prototype locally:
+If a live URL is not available, judges can run the prototype locally using these commands:
 
 ```powershell
 # activate venv
@@ -72,11 +75,12 @@ docker build -t logishield .
 docker run -p 5000:5000 logishield
 ```
 
-## Submission checklist (what to include now)
-- Live URL (Render) or GitHub repo link: https://github.com/itzCandyBoi/LogiShield
-- `PRESENTATION.md` (slide content & demo script) — already added.
-- Demo credentials: `demo@logishield.com` / `demo1234` (include in README). 
-- Sample CSVs are in the repo (`sample_invoice.csv`, `sample_receipt.csv`).
+## What judges should see in this submission
+- Prototype repository: https://github.com/itzCandyBoi/LogiShield
+- Live URL (if available) for instant preview.
+- `PRESENTATION.md`: judge-facing pitch outline and demo script.
+- Demo credentials: `demo@logishield.com` / `demo1234`.
+- Sample CSVs in the repo: `sample_invoice.csv`, `sample_receipt.csv`.
 
 
 ## Features

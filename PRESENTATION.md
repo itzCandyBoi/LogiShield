@@ -1,6 +1,6 @@
-# LogiShield — 5-Slide Pitch Deck & Demo Script
+# LogiShield — Judge Guide and 5-Slide Pitch Deck
 
-This file contains a compact 5-slide deck and exact demo script you can submit now with the prototype link.
+This file is written for judges and reviewers. It contains the slide outline and demo script for evaluating the submission and understanding the prototype.
 
 ---
 

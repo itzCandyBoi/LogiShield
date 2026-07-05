@@ -1,6 +1,8 @@
 # LogiShield
 
-LogiShield is a hackathon prototype for automating invoice-to-warehouse receipt reconciliation for small and medium-sized logistics and finance teams.
+LogiShield is a prototype web application designed to help logistics and finance teams automate the reconciliation of supplier invoices against warehouse receipts. The system allows users to upload invoice and receipt data, detect mismatches such as quantity differences, price discrepancies, or missing entries, and highlight these issues through a risk-based review workflow. It is built to reduce manual effort, improve accuracy, and give users a faster way to identify suspicious or high-risk transactions.
+
+The prototype focuses on the core workflow of ingesting data, reconciling it, flagging discrepancies, and presenting results in a simple dashboard. It also includes basic reporting features so users can review issues and export records for further follow-up. While it is still a prototype, it demonstrates how AI-assisted reconciliation and anomaly detection could help small and medium-sized businesses save time and reduce fraud risk.
 
 ## What the prototype does
 - Lets users register and log in
@@ -12,7 +14,7 @@ LogiShield is a hackathon prototype for automating invoice-to-warehouse receipt 
 
 ## How to use it
 ### Option 1: Open the hosted version
-If a live demo URL is available, open it in the browser and start using the system directly. This is the easiest way for judges and other reviewers.
+https://logishield.onrender.com/register
 
 ### Option 2: Run it locally
 If you want to run the prototype on your own machine, follow these steps:

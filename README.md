@@ -54,4 +54,3 @@ The repository already includes sample files for demo purposes:
 - templates/ — UI pages
 - static/ — CSS and static assets
 - tests/ — basic unit tests
-- PRESENTATION.md — short judge-friendly pitch and demo outline
